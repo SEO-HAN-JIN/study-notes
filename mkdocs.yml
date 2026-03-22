@@ -5,18 +5,13 @@ site_author: 서한진
 repo_url: https://github.com/SEO-HAN-JIN/study-notes
 repo_name: study-notes
 
-site_name: Study Notes
-site_url: https://SEO-HAN-JIN.github.io/study-notes/
-site_description: 자격증 및 기술 공부 기록
-site_author: 서한진
-repo_url: https://github.com/SEO-HAN-JIN/study-notes
-repo_name: study-notes
-
 theme:
   name: material
   language: ko
-  logo: assets/logo.png
-  favicon: assets/favicon.png
+  icon:
+    logo: material/notebook-outline
+#   logo: assets/logo.png
+#   favicon: assets/favicon.png
 
   palette:
     - scheme: default
@@ -35,7 +30,6 @@ theme:
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - navigation.instant
     - search.suggest
@@ -45,7 +39,11 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - js/toc-toggle.js
+
 markdown_extensions:
+  - attr_list
   - admonition
   - pymdownx.details
   - pymdownx.superfences
@@ -53,6 +51,9 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - Home: index.md
@@ -103,3 +104,4 @@ nav:
   - MkDocs:
       - 설치: mkdocs/설치.md
       - 적용: mkdocs/적용.md
+      - 가이드: mkdocs/가이드.md

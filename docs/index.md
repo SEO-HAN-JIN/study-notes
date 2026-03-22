@@ -1,17 +1,61 @@
-# Welcome to MkDocs
+# Study Notes
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+> Markdown으로 정리하고, GitHub와 MkDocs로 기록하는 개인 기술 문서 사이트
 
-## Commands
+---
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Welcome
 
-## Project layout
+이 사이트는 공부한 내용을 단순히 소비하고 끝내지 않고,  
+**다시 찾아볼 수 있는 문서**로 남기기 위해 만든 공간입니다.
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+자격증 학습, 기술 개념 정리, 문제 풀이, 오답노트,  
+그리고 실무에서 다시 확인해야 하는 내용을  
+구조적으로 정리하고 누적해 나가는 것을 목표로 합니다.
+
+---
+
+## What This Site Is For
+
+### 기술 학습 기록
+공부한 내용을 Markdown으로 정리하고,  
+주제별로 다시 찾아보기 쉽게 문서화합니다.
+
+### 문제 풀이 및 오답노트
+문제를 풀면서 맞았는지보다  
+왜 틀렸는지, 다음에 무엇을 확인해야 하는지를 남깁니다.
+
+### 공통 개념 정리
+여러 학습 주제에서 반복해서 등장하는 개념과 패턴을  
+따로 분리해서 정리합니다.
+
+### 장기적인 문서 축적
+짧은 메모가 아니라  
+시간이 지나도 다시 볼 수 있는 문서를 쌓아가는 것을 지향합니다.
+
+---
+
+## How It Is Organized
+
+이 사이트는 아래와 같은 방식으로 구성됩니다.
+
+- 주제별 문서 분리
+- Markdown 기반 작성
+- GitHub로 원본 관리
+- MkDocs로 정적 문서 사이트 구성
+- GitHub Pages로 배포
+
+즉, 단순한 블로그보다는  
+**기술 문서를 쌓아가는 개인 아카이브**에 가깝습니다.
+
+---
+
+## Notes
+
+!!! tip "기록 원칙"
+    완벽하게 정리하는 것보다  
+    다시 찾아볼 수 있게 남기는 것을 더 중요하게 생각합니다.
+
+!!! info "사이트 방향"
+    이 공간은 일회성 정리가 아니라  
+    시간이 지날수록 계속 확장되는 기술 문서 저장소를 목표로 합니다.
