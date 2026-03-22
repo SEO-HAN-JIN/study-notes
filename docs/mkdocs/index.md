@@ -1,0 +1,435 @@
+# GitHub + GitHub Pages + MkDocs로 공부용 문서 사이트 만들기
+
+## 1. 목적
+
+VSCode에서 Markdown으로 작성한 공부 내용을  
+GitHub에 저장하고, GitHub Pages를 통해 웹사이트 형태로 보기 위해  
+**GitHub + GitHub Pages + MkDocs** 조합으로 문서 사이트를 만든다.
+
+이 방식은 다음과 같은 장점이 있다.
+
+- Markdown 파일을 그대로 관리할 수 있다.
+- GitHub로 버전 관리가 가능하다.
+- GitHub Pages로 무료 배포가 가능하다.
+- CKA뿐 아니라 CKAD, AWS 등 다른 공부 주제도 계속 확장할 수 있다.
+
+---
+
+## 2. 내가 시작한 상태
+
+처음 시작할 때 내 상태는 아래와 같았다.
+
+- GitHub 아이디는 이미 있음
+- GitHub Pages는 아직 따로 만든 적 없음
+- Python 가상환경 안에서 작업 중
+- `mkdocs.yml` 파일까지는 만든 상태
+
+즉, 완전히 처음부터가 아니라  
+**MkDocs 프로젝트 기본 뼈대는 이미 만든 상태에서 GitHub와 GitHub Pages를 연결하는 작업**을 진행했다.
+
+---
+
+## 3. 전체 흐름
+
+전체 작업 순서는 아래와 같다.
+
+1. Python 가상환경 준비
+2. MkDocs 및 Material 테마 설치
+3. 로컬에서 MkDocs 사이트 확인
+4. GitHub 저장소 생성
+5. 로컬 프로젝트를 GitHub에 업로드
+6. MkDocs를 이용해 `gh-pages` 브랜치로 배포
+7. GitHub Pages에서 `gh-pages` 브랜치를 게시 소스로 설정
+8. 웹사이트 접속 확인
+9. 이후 문서 수정 시 반복 작업
+
+---
+
+## 4. 프로젝트 폴더와 Python 가상환경 준비
+
+### 4-1. 프로젝트 폴더로 이동
+
+먼저 작업할 폴더로 이동한다.
+
+```bash
+cd study-notes
+```
+
+---
+
+### 4-2. Python 가상환경 생성
+프로젝트별로 Python 패키지 충돌을 막기 위해 가상환경을 만든다.
+```bash
+python3 -m venv .venv
+```
+
+---
+
+### 4-3. 가상환경 활성화
+작업할 때는 가상환경을 활성화해서 사용한다.
+```bash
+source .venv/bin/activate
+```
+정상적으로 활성화되면 터미널 앞에 보통 `(.venv)`가 표시된다.
+
+예시:
+```bash
+(.venv) seohanjin@MacBookPro study-notes %
+```
+
+---
+
+## 5. MkDocs 설치
+가상환경이 활성화된 상태에서 MkDocs Material 테마를 설치한다.
+```bash
+pip install mkdocs-material
+```
+설치 후 버전 확인도 가능하다.
+```bash
+mkdocs --version
+```
+
+---
+
+## 6. MkDocs 프로젝트 기본 생성
+MkDocs 프로젝트를 초기화한다.
+```bash
+mkdocs new .
+```
+그러면 보통 아래와 같은 구조가 생긴다.
+```bash
+study-notes/
+├─ mkdocs.yml
+└─ docs/
+   └─ index.md
+```
+
+---
+
+## 7. mkdocs.yml 설정
+내 경우 범용 공부 사이트로 사용할 예정이기 때문에
+CKA 전용이 아닌 공부 전체를 담는 형태로 구성하려고 했다.
+
+기본 예시는 아래와 같다.
+```yaml
+site_name: Study Notes
+site_url: https://<GitHub아이디>.github.io/study-notes/
+site_description: 자격증 및 기술 공부 기록
+site_author: 서한진
+
+theme:
+  name: material
+  language: ko
+
+nav:
+  - Home: index.md
+```
+
+### 7-1. `site_url`에서 `<GitHub아이디>` 의미
+여기서 `<GitHub아이디>`는 GitHub 가입 시 만든 **사용자명(username)** 이다.
+
+예를 들어 내 GitHub 저장소 경로가 아래와 같다면:
+
+```bash
+https://github.com/SEO-HAN-JIN/study-notes
+```
+
+내 GitHub 아이디는 다음과 같다.
+```bash
+SEO-HAN-JIN
+```
+따라서 `site_url`은 이렇게 작성한다.
+```bash
+site_url: https://SEO-HAN-JIN.github.io/study-notes/
+```
+즉,
+
+- GitHub 아이디 = SEO-HAN-JIN
+- 저장소 이름 = study-notes
+
+최종 사이트 주소는 아래 형식이 된다.
+```bash
+https://SEO-HAN-JIN.github.io/study-notes/
+```
+
+---
+
+## 8. docs/index.md 작성
+최소한 홈 화면 역할을 할 `docs/index.md` 파일을 작성한다.
+
+예시: 
+```markdown
+# Study Notes
+
+내 공부 기록 사이트입니다.
+```
+
+---
+
+## 9. 로컬에서 MkDocs 사이트 실행
+GitHub에 올리기 전에 먼저 로컬에서 정상 작동하는지 확인한다.
+```bash
+mkdocs serve
+```
+정상적으로 실행되면 로컬 주소가 표시된다.
+브라우저에서 해당 주소로 접속하면 현재 문서 사이트를 미리 볼 수 있다.
+
+이 단계에서 확인할 내용:
+
+- 화면이 정상적으로 뜨는지
+- `mkdocs.yml` 문법 오류가 없는지
+- Markdown 내용이 잘 보이는지
+
+---
+
+## 10. GitHub 저장소 생성
+GitHub 사이트에서 새 저장소(repository)를 생성한다.
+
+내 경우 저장소 이름은 아래와 같이 사용했다.
+```bash
+study-notes
+```
+
+그리고 실제 저장소 경로는 다음과 같다.
+```bash
+https://github.com/SEO-HAN-JIN/study-notes
+```
+
+중요한 점은,
+이번 방식은 `SEO-HAN-JIN.github.io`라는 특수 저장소를 만드는 방식이 아니라
+일반 저장소 study-notes를 만든 후,
+그 저장소를 GitHub Pages로 배포하는 프로젝트 사이트 방식이라는 점이다.
+
+---
+
+## 11. 로컬 프로젝트를 GitHub에 연결
+프로젝트 폴더에서 아래 명령어를 실행한다.
+```bash
+git init
+git add .
+git commit -m "init mkdocs site"
+git branch -M main
+git remote add origin https://github.com/SEO-HAN-JIN/study-notes.git
+git push -u origin main
+```
+
+---
+
+## 12. GitHub push 시 발생한 인증 오류
+처음 `git push -u origin main` 실행 시 아래와 같은 오류가 발생했다.
+```bash
+Username for 'https://github.com': SEO-HAN-JIN
+Password for 'https://SEO-HAN-JIN@github.com':
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/SEO-HAN-JIN/study-notes.git/'
+```
+
+### 12-1. 오류 원인
+원인은 GitHub가 **비밀번호 인증 방식으로 Git push를 지원하지 않기 때문**이다.
+즉,
+
+- GitHub 비밀번호를 입력하면 안 됨
+- 대신 **PAT(Personal Access Token, 개인 액세스 토큰)** 또는 **SSH 방식**을 사용해야 함
+
+---
+
+## 13. GitHub PAT 토큰 생성
+나는 HTTPS 방식으로 push하고 있었기 때문에
+비밀번호 대신 사용할 **PAT 토큰**을 생성해야 했다.
+
+### 13-1. GitHub에서 토큰 생성 위치
+
+GitHub 웹사이트에서 아래 순서로 이동한다.
+1. 우측 상단 프로필 클릭
+2. `Settings`
+3. `Developer settings`
+4. `Personal access tokens`
+5. `Fine-grained tokens`
+6. `Generate new token`
+
+---
+
+### 13-2. 토큰 권한 설정
+
+토큰 생성 시 아래와 같이 설정한다.
+
+- Repository access: `Only select repositories`
+- 선택 저장소: `study-notes`
+- Permissions:
+    - `Contents: Read and write`
+
+토큰을 생성한 후에는 반드시 복사해서 보관해야 한다.
+생성 직후가 아니면 다시 원문을 보기 어려울 수 있다.
+
+---
+
+## 14. 다시 GitHub push 실행
+
+다시 아래 명령어를 실행한다.
+```bash
+git push -u origin main
+```
+프롬프트가 나오면 다음과 같이 입력한다.
+
+- Username: SEO-HAN-JIN
+- Password: **GitHub 비밀번호가 아니라 PAT 토큰**
+
+즉, `Password`라고 표시되어 있어도
+실제로는 **토큰을 입력하는 자리**라고 이해하면 된다.
+
+---
+
+## 15. GitHub Pages 배포
+
+GitHub에 원본 소스를 올린 후,
+MkDocs를 사용하여 GitHub Pages용 브랜치인 `gh-pages`로 배포한다.
+
+```bash
+mkdocs gh-deploy --force
+```
+
+이 명령어는 다음 작업을 자동으로 수행한다.
+- MkDocs 사이트를 빌드함
+- 정적 파일을 생성함
+- `gh-pages` 브랜치에 업로드함
+
+즉, `gh-pages` 브랜치가 실제 웹사이트 배포용 브랜치가 된다.
+
+---
+
+## 16. GitHub Pages 설정
+
+이제 GitHub 저장소에서 Pages 설정을 해야 한다.
+
+### 16-1. 설정 순서
+1. GitHub 저장소 접속
+2. `Settings`
+3. `Pages`
+4. `Build and deployment`
+5. `Source`에서 `Deploy from a branch` 선택
+6. Branch를 `gh-pages`로 선택
+7. Folder는 `/(root)` 선택
+8. 저장
+
+이 과정을 거치면 GitHub Pages가 gh-pages 브랜치의 내용을 웹사이트로 배포한다.
+
+--- 
+
+## 17. 사이트 주소
+
+내 경우 사이트 주소는 아래 형식이 된다.
+```bash
+https://SEO-HAN-JIN.github.io/study-notes/
+```
+
+즉,
+- GitHub 아이디: `SEO-HAN-JIN`
+- 저장소명: `study-notes`
+
+이 두 값을 조합하여 최종 주소가 만들어진다.
+
+---
+
+## 18. 이후 문서 수정 시 작업 방법
+문서를 수정한 뒤에는 아래 순서로 작업하면 된다.
+
+### 18-1. 가상환경 활성화
+```bash
+cd study-notes
+source .venv/bin/activate
+```
+
+---
+
+### 18-2. 로컬 확인
+```bash
+mkdocs serve
+```
+
+브라우저에서 확인 후 이상 없으면 반영한다.
+
+---
+
+### 18-3. GitHub 원본 저장소 반영
+```bash
+git add .
+git commit -m "update notes"
+git push
+18-4. GitHub Pages 재배포
+mkdocs gh-deploy --force
+```
+
+즉, 정리하면:
+- `git push` → 원본 Markdown/GitHub 저장소 반영
+- `mkdocs gh-deploy --force` → 공개 사이트 갱신
+
+--- 
+
+## 19. 가상환경은 매번 들어가야 하는가?
+결론적으로, **보통은 작업할 때마다 가상환경을 활성화하는 것이 맞다.**
+
+이유:
+- `mkdocs`
+- `mkdocs-material`
+
+같은 패키지를 가상환경 안에 설치했기 때문
+
+따라서 작업할 때는 아래처럼 시작하는 것이 안전하다.
+```bash
+cd study-notes
+source .venv/bin/activate
+```
+작업 종료 후 끄고 싶다면:
+```bash
+deactivate
+```
+VSCode에서 Python interpreter를 `.venv`로 잘 설정해두면
+터미널을 열 때 자동으로 활성화되는 경우도 있어 조금 더 편하게 사용할 수 있다.
+
+--- 
+
+## 20. 내가 실제로 사용한 핵심 명령어 모음
+### 가상환경 생성
+```bash
+python3 -m venv .venv
+```
+
+### 가상환경 활성화
+```bash
+source .venv/bin/activate
+```
+
+### MkDocs 설치
+```bash
+pip install mkdocs-material
+```
+
+### MkDocs 프로젝트 생성
+```bash
+mkdocs new .
+```
+
+### 로컬 서버 실행
+```bash
+mkdocs serve
+```
+
+### Git 초기화 및 GitHub 연결
+```bash
+git init
+git add .
+git commit -m "init mkdocs site"
+git branch -M main
+git remote add origin https://github.com/SEO-HAN-JIN/study-notes.git
+git push -u origin main
+```
+
+### GitHub Pages 배포
+```bash
+mkdocs gh-deploy --force
+```
+
+### 가상환경 종료
+```bash
+deactivate
+```

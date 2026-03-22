@@ -52,3 +52,6 @@ nav:
   - Snippets:
       - 소개: snippets/index.md
       - Shell Commands: snippets/shell-commands.md
+
+  - MkDocs:
+      - 설치법: mkdocs/index.md
