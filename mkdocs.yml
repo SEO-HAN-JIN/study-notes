@@ -54,4 +54,5 @@ nav:
       - Shell Commands: snippets/shell-commands.md
 
   - MkDocs:
-      - 설치법: mkdocs/index.md
+      - 설치: mkdocs/설치.md
+      - 적용: mkdocs/적용.md
