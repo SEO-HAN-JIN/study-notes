@@ -1,0 +1,69 @@
+:root {
+  --md-primary-fg-color: #111827;
+  --md-accent-fg-color: #4f46e5;
+  --md-typeset-a-color: #4f46e5;
+}
+
+/* 전체 본문 가독성 */
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.75;
+}
+
+/* 제목 더 또렷하게 */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.8rem;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  margin-top: 2.2rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+  padding-bottom: 0.35rem;
+}
+
+.md-typeset h3 {
+  font-weight: 700;
+}
+
+/* 코드블록 둥글게 */
+.md-typeset pre > code {
+  border-radius: 12px;
+}
+
+/* 인라인 코드 */
+.md-typeset code {
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+}
+
+/* 표 조금 더 보기 좋게 */
+.md-typeset table:not([class]) {
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.75rem;
+}
+
+/* 사이드바 라벨 가독성 */
+.md-nav__title,
+.md-nav__link {
+  font-size: 0.74rem;
+}
+
+/* 콘텐츠 폭 약간 넓히기 */
+.md-grid {
+  max-width: 1440px;
+}
+
+/* 홈 첫 제목 여백 */
+.md-content__inner > h1:first-child {
+  margin-top: 0.2rem;
+}
+
+/* admonition 박스 둥글게 */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 12px;
+}
