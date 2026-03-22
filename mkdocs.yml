@@ -1,11 +1,58 @@
 site_name: Study Notes
-site_url: https://SEO-HAN-JINgithub.io/study-notes/
+site_url: https://SEO-HAN-JIN.github.io/study-notes/
 site_description: 자격증 및 기술 공부 기록
 site_author: 서한진
+repo_url: https://github.com/SEO-HAN-JIN/study-notes
+repo_name: study-notes
+
+site_name: Study Notes
+site_url: https://SEO-HAN-JIN.github.io/study-notes/
+site_description: 자격증 및 기술 공부 기록
+site_author: 서한진
+repo_url: https://github.com/SEO-HAN-JIN/study-notes
+repo_name: study-notes
 
 theme:
   name: material
   language: ko
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+
+  palette:
+    - scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
 
 nav:
   - Home: index.md
