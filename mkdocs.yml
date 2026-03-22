@@ -1,0 +1,54 @@
+site_name: Study Notes
+site_url: https://SEO-HAN-JINgithub.io/study-notes/
+site_description: 자격증 및 기술 공부 기록
+site_author: 서한진
+
+theme:
+  name: material
+  language: ko
+
+nav:
+  - Home: index.md
+
+  - Certifications:
+      - 소개: certifications/index.md
+
+      - CKA:
+          - 소개: certifications/cka/index.md
+          - Week 1:
+              - 개념정리: certifications/cka/week1/theory.md
+              - 문제풀이: certifications/cka/week1/practice.md
+              - 오답노트: certifications/cka/week1/wrong-answers.md
+          - Week 2:
+              - 개념정리: certifications/cka/week2/theory.md
+              - 문제풀이: certifications/cka/week2/practice.md
+              - 오답노트: certifications/cka/week2/wrong-answers.md
+          - Mock Exam:
+              - Mock 01: certifications/cka/mock-exam/mock-01.md
+
+      - CKAD:
+          - 소개: certifications/ckad/index.md
+
+      - AWS:
+          - 소개: certifications/aws/index.md
+          - SAA:
+              - 소개: certifications/aws/saa/index.md
+              - Networking: certifications/aws/saa/networking.md
+              - Storage: certifications/aws/saa/storage.md
+              - 오답노트: certifications/aws/saa/wrong-answers.md
+
+  - Common:
+      - 소개: common/index.md
+      - kubectl 명령어: common/kubectl-commands.md
+      - YAML 패턴: common/yaml-patterns.md
+      - 트러블슈팅: common/troubleshooting.md
+      - 시험 전략: common/exam-strategy.md
+
+  - Blog Drafts:
+      - 소개: blog-drafts/index.md
+      - Ingress: blog-drafts/ingress.md
+      - PVC: blog-drafts/pvc.md
+
+  - Snippets:
+      - 소개: snippets/index.md
+      - Shell Commands: snippets/shell-commands.md
