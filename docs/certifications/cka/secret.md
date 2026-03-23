@@ -30,6 +30,8 @@ data:
 kubectl create secret generic my-secret --from-literal=username=user --from-literal=password=pass
 ```
 
+`generic`은 Opaque 타입의 일반 Secret을 생성하는 서브커맨드입니다. 다른 타입으로는 `tls` (TLS 인증서), `docker-registry` (Docker 레지스트리 인증) 등이 있습니다.
+
 ### YAML 파일로 생성
 ```bash
 kubectl apply -f secret.yaml
@@ -102,6 +104,9 @@ spec:
 ```
 
 이렇게 하면 `/etc/secret/username`, `/etc/secret/password` 파일로 Secret의 데이터에 접근할 수 있습니다. 파일 권한은 자동으로 0644로 설정됩니다.
+
+`readOnly: true`는 Secret Volume 마운트 시 기본적으로 적용되며, 보안을 위해 Secret 데이터가 컨테이너에서 수정되지 않도록 합니다.
+
 
 ## 4. Base64 인코딩 방법
 
