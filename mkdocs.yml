@@ -63,6 +63,7 @@ nav:
 
       - CKA:
           - 소개: certifications/cka/index.md
+          - ConfigMap: certifications/cka/configmap.md
           - Week 1:
               - 개념정리: certifications/cka/week1/theory.md
               - 문제풀이: certifications/cka/week1/practice.md
