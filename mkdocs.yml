@@ -59,11 +59,10 @@ nav:
   - Home: index.md
 
   - Certifications:
-      - 소개: certifications/index.md
-
       - CKA:
           - 소개: certifications/cka/index.md
           - ConfigMap: certifications/cka/configmap.md
+          - Secret: certifications/cka/secret.md
           - Week 1:
               - 개념정리: certifications/cka/week1/theory.md
               - 문제풀이: certifications/cka/week1/practice.md
