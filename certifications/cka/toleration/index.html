@@ -12,13 +12,13 @@
         <meta name="author" content="서한진">
       
       
-        <link rel="canonical" href="https://SEO-HAN-JIN.github.io/study-notes/certifications/cka/secret/">
+        <link rel="canonical" href="https://SEO-HAN-JIN.github.io/study-notes/certifications/cka/toleration/">
       
       
-        <link rel="prev" href="../configmap/">
+        <link rel="prev" href="../secret/">
       
       
-        <link rel="next" href="../toleration/">
+        <link rel="next" href="../../../mkdocs/%EC%84%A4%EC%B9%98/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>Secret - Study Notes</title>
+        <title>toleration - Study Notes</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-secret" class="md-skip">
+        <a href="#kubernetes-toleration" class="md-skip">
           콘텐츠로 이동
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Secret
+              toleration
             
           </span>
         </div>
@@ -542,6 +542,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../secret/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secret
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -561,7 +589,7 @@
   <span class="md-ellipsis">
     
   
-    Secret
+    toleration
   
 
     
@@ -579,7 +607,7 @@
   <span class="md-ellipsis">
     
   
-    Secret
+    toleration
   
 
     
@@ -605,10 +633,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-secret-yaml" class="md-nav__link">
+  <a href="#toleration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Secret YAML의 기본 뼈대
+        Toleration이란?
       
     </span>
   </a>
@@ -616,22 +644,200 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-secret" class="md-nav__link">
+  <a href="#taint-toleration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Secret 생성법
+        Taint와 Toleration의 관계
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Secret 생성법">
+    <nav class="md-nav" aria-label="Taint와 Toleration의 관계">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#taint-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint (Node 표시)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toleration-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration (Pod의 허용)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint 설정하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Taint 설정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint 추가/제거
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taint-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint Effect (효과) 종류
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toleration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration 설정하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toleration 설정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-toleration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod에 Toleration 추가
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toleration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration 필드 설명
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toleration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration 예제
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toleration 예제">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 1: 특정 값과 정확히 일치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-key-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 2: Key 존재 여부 확인 (Exists)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-noexecute-tolerationseconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 3: NoExecute와 tolerationSeconds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-toleration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 4: 와일드카드 Toleration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        명령어로 생성
+        실제 사용 사례
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="실제 사용 사례">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gpu-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. GPU 노드 전용 Pod 스케줄링
       
     </span>
   </a>
@@ -639,10 +845,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#yaml" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        YAML 파일로 생성
+        2. 유지보수 중인 노드 격리
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 전용 노드 풀
       
     </span>
   </a>
@@ -655,124 +872,57 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-pod-secret" class="md-nav__link">
+  <a href="#taint-toleration_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Pod에 Secret 적용 방식
+        Taint와 Toleration 동작 원리
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Pod에 Secret 적용 방식">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        각 변수마다 하나씩 적용 (Environment Variables)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#environment-variables-from-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        파일 전체 적용 (Environment Variables from Secret)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#volume" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Volume 적용
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-base64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Base64 인코딩 방법
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Base64 인코딩 방법">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linuxmacos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linux/macOS에서 수동 인코딩
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        디코딩 (확인용)
+        주의사항
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#base64" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#nodeselector-vs-affinity-vs-toleration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        파일을 base64로 인코딩
+        비교: NodeSelector vs Affinity vs Toleration
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#kubectl" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#taint-toleration_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        kubectl로 생성 시 자동 인코딩
+        실습: Taint와 Toleration 설정
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        예시
+        학습 핵심 요약
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -780,34 +930,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../toleration/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    toleration
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -998,10 +1120,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-secret-yaml" class="md-nav__link">
+  <a href="#toleration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. Secret YAML의 기본 뼈대
+        Toleration이란?
       
     </span>
   </a>
@@ -1009,22 +1131,200 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-secret" class="md-nav__link">
+  <a href="#taint-toleration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. Secret 생성법
+        Taint와 Toleration의 관계
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2. Secret 생성법">
+    <nav class="md-nav" aria-label="Taint와 Toleration의 관계">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#taint-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint (Node 표시)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toleration-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration (Pod의 허용)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint 설정하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Taint 설정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taint_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint 추가/제거
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#taint-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taint Effect (효과) 종류
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toleration_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration 설정하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toleration 설정하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-toleration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod에 Toleration 추가
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toleration_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration 필드 설명
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toleration_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toleration 예제
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Toleration 예제">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 1: 특정 값과 정확히 일치
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-key-exists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 2: Key 존재 여부 확인 (Exists)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-noexecute-tolerationseconds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 3: NoExecute와 tolerationSeconds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-toleration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예제 4: 와일드카드 Toleration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        명령어로 생성
+        실제 사용 사례
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="실제 사용 사례">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-gpu-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. GPU 노드 전용 Pod 스케줄링
       
     </span>
   </a>
@@ -1032,10 +1332,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#yaml" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        YAML 파일로 생성
+        2. 유지보수 중인 노드 격리
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 전용 노드 풀
       
     </span>
   </a>
@@ -1048,124 +1359,57 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-pod-secret" class="md-nav__link">
+  <a href="#taint-toleration_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. Pod에 Secret 적용 방식
+        Taint와 Toleration 동작 원리
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="3. Pod에 Secret 적용 방식">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        각 변수마다 하나씩 적용 (Environment Variables)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#environment-variables-from-secret" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        파일 전체 적용 (Environment Variables from Secret)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#volume" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Volume 적용
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-base64" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Base64 인코딩 방법
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4. Base64 인코딩 방법">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linuxmacos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Linux/macOS에서 수동 인코딩
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        디코딩 (확인용)
+        주의사항
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#base64" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#nodeselector-vs-affinity-vs-toleration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        파일을 base64로 인코딩
+        비교: NodeSelector vs Affinity vs Toleration
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#kubectl" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#taint-toleration_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        kubectl로 생성 시 자동 인코딩
+        실습: Taint와 Toleration 설정
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        예시
+        학습 핵심 요약
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1189,122 +1433,266 @@
   
 
 
-<h1 id="kubernetes-secret">Kubernetes Secret 정리</h1>
-<h2 id="1-secret-yaml">1. Secret YAML의 기본 뼈대</h2>
-<p>Secret은 민감한 데이터를 저장하는 Kubernetes 리소스로, ConfigMap과 유사하지만 데이터가 base64로 인코딩됩니다. 기본 YAML 구조는 다음과 같습니다:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Secret</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-secret</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-<span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Opaque</span>
-<span class="nt">data</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dXNlcg==</span><span class="w">  </span><span class="c1"># base64 encoded &#39;user&#39;</span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cGFzcw==</span><span class="w">  </span><span class="c1"># base64 encoded &#39;pass&#39;</span>
-</code></pre></div>
+<h1 id="kubernetes-toleration">Kubernetes Toleration</h1>
+<h2 id="toleration">Toleration이란?</h2>
+<p><strong>Toleration</strong>은 Pod이 특정 <strong>Taint</strong>가 있는 Node에 스케줄될 수 있도록 해주는 메커니즘입니다. Node의 Taint와 Pod의 Toleration이 일치할 때, Pod은 해당 Node에 배포될 수 있습니다.</p>
+<h2 id="taint-toleration">Taint와 Toleration의 관계</h2>
+<h3 id="taint-node">Taint (Node 표시)</h3>
 <ul>
-<li><code>apiVersion</code>: <code>v1</code></li>
-<li><code>kind</code>: <code>Secret</code></li>
-<li><code>metadata</code>: 이름, 네임스페이스 등 메타데이터</li>
-<li><code>type</code>: <code>Opaque</code> (기본), <code>kubernetes.io/tls</code> (TLS 인증서용) 등</li>
-<li><code>data</code>: base64 인코딩된 키-값 데이터</li>
+<li><strong>Taint</strong>는 Node에 부여되는 특수한 표시입니다</li>
+<li>Pod이 이 Taint를 용인(tolerate)하지 않으면 해당 Node를 피합니다</li>
+<li>주로 특수한 하드웨어(GPU, SSD 등) 또는 특정 목적의 Node를 보호할 때 사용됩니다</li>
 </ul>
-<h2 id="2-secret">2. Secret 생성법</h2>
-<h3 id="_1">명령어로 생성</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 리터럴 값으로 생성 (자동 base64 인코딩)</span>
-kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>my-secret<span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span>user<span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span>pass
-</code></pre></div>
-<p><code>generic</code>은 Opaque 타입의 일반 Secret을 생성하는 서브커맨드입니다. 다른 타입으로는 <code>tls</code> (TLS 인증서), <code>docker-registry</code> (Docker 레지스트리 인증) 등이 있습니다.</p>
-<h3 id="yaml">YAML 파일로 생성</h3>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>secret.yaml
-</code></pre></div>
-<h2 id="3-pod-secret">3. Pod에 Secret 적용 방식</h2>
-<h3 id="environment-variables">각 변수마다 하나씩 적용 (Environment Variables)</h3>
-<p>Pod의 컨테이너에 개별 환경변수로 Secret의 키를 매핑:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-pod</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="w">    </span><span class="nt">env</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERNAME</span>
-<span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-secret</span>
-<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PASSWORD</span>
-<span class="w">      </span><span class="nt">valueFrom</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">secretKeyRef</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-secret</span>
-<span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
-</code></pre></div>
-<h3 id="environment-variables-from-secret">파일 전체 적용 (Environment Variables from Secret)</h3>
-<p>Secret의 모든 키를 환경변수로 적용:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-pod</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="w">    </span><span class="nt">envFrom</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretRef</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-secret</span>
-</code></pre></div>
-<h3 id="volume">Volume 적용</h3>
-<p>Secret을 볼륨으로 마운트하여 파일로 접근:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-pod</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-container</span>
-<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
-<span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-volume</span>
-<span class="w">      </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/secret</span>
-<span class="w">      </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-volume</span>
-<span class="w">    </span><span class="nt">secret</span><span class="p">:</span>
-<span class="w">      </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-secret</span>
-</code></pre></div>
-<p>이렇게 하면 <code>/etc/secret/username</code>, <code>/etc/secret/password</code> 파일로 Secret의 데이터에 접근할 수 있습니다. 파일 권한은 자동으로 0644로 설정됩니다.</p>
-<p><code>readOnly: true</code>는 Secret Volume 마운트 시 기본적으로 적용되며, 보안을 위해 Secret 데이터가 컨테이너에서 수정되지 않도록 합니다.</p>
-<h2 id="4-base64">4. Base64 인코딩 방법</h2>
-<p>Secret의 <code>data</code> 필드에 저장되는 값은 base64로 인코딩되어야 합니다. 직접 인코딩하거나, kubectl이 자동으로 처리할 수 있습니다.</p>
-<h3 id="linuxmacos">Linux/macOS에서 수동 인코딩</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;my-secret-value&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
-<span class="c1"># 출력: bXktc2VjcmV0LXZhbHVl</span>
-</code></pre></div>
-<h3 id="_2">디코딩 (확인용)</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;bXktc2VjcmV0LXZhbHVl&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d
-<span class="c1"># 출력: my-secret-value</span>
-</code></pre></div>
-<h3 id="base64">파일을 base64로 인코딩</h3>
-<div class="highlight"><pre><span></span><code>base64<span class="w"> </span>-i<span class="w"> </span>myfile.txt
-</code></pre></div>
-<h3 id="kubectl">kubectl로 생성 시 자동 인코딩</h3>
-<p><code>kubectl create secret</code> 명령어는 <code>--from-literal</code> 옵션으로 값을 제공하면 자동으로 base64 인코딩합니다. YAML 파일에 직접 작성할 때는 수동으로 인코딩해야 합니다.</p>
-<h3 id="_3">예시</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># &#39;admin&#39; 인코딩</span>
-<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;admin&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
-<span class="c1"># dXNlcg==</span>
+<h3 id="toleration-pod">Toleration (Pod의 허용)</h3>
+<ul>
+<li><strong>Toleration</strong>은 Pod이 특정 Taint를 견딜 수 있다는 것을 선언합니다</li>
+<li>Toleration이 Taint와 일치하면 Pod이 Node에 스케줄될 수 있습니다</li>
+</ul>
+<hr />
+<h2 id="taint">Taint 설정하기</h2>
+<h3 id="taint_1">Taint 추가/제거</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Taint 추가</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>node-name<span class="w"> </span><span class="nv">key</span><span class="o">=</span>value:effect
 
-<span class="c1"># &#39;password123&#39; 인코딩</span>
-<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;password123&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>base64
-<span class="c1"># cGFzc3dvcmQxMjM=</span>
+<span class="c1"># Taint 제거 (끝에 &#39;-&#39; 추가)</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>node-name<span class="w"> </span>key-
+
+<span class="c1"># 예시</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>node1<span class="w"> </span><span class="nv">gpu</span><span class="o">=</span>true:NoSchedule
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>node2<span class="w"> </span><span class="nv">dedicated</span><span class="o">=</span>special:NoExecute
 </code></pre></div>
-<p>YAML에서:
-<div class="highlight"><pre><span></span><code><span class="nt">data</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dXNlcg==</span>
-<span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cGFzc3dvcmQxMjM=</span>
-</code></pre></div></p>
+<h3 id="taint-effect">Taint Effect (효과) 종류</h3>
+<table>
+<thead>
+<tr>
+<th>Effect</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NoSchedule</strong></td>
+<td>Toleration이 없는 Pod은 Node에 스케줄되지 않음 (기존 Pod은 영향 없음)</td>
+</tr>
+<tr>
+<td><strong>NoExecute</strong></td>
+<td>Toleration이 없는 Pod은 스케줄되지 않으며, 기존 Pod도 제거됨</td>
+</tr>
+<tr>
+<td><strong>PreferNoSchedule</strong></td>
+<td>Toleration이 없는 Pod을 피하려고 하지만, 필요하면 스케줄될 수 있음</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="toleration_1">Toleration 설정하기</h2>
+<h3 id="pod-toleration">Pod에 Toleration 추가</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-tolerating-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tolerations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu</span>
+<span class="w">    </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equal</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">    </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</code></pre></div>
+<h3 id="toleration_2">Toleration 필드 설명</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">tolerations</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu</span><span class="w">                    </span><span class="c1"># Taint의 key</span>
+<span class="w">  </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equal</span><span class="w">             </span><span class="c1"># 비교 방식 (Equal, Exists)</span>
+<span class="w">  </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="w">               </span><span class="c1"># Taint의 value (operator가 Equal일 때만)</span>
+<span class="w">  </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span><span class="w">          </span><span class="c1"># Taint의 effect (NoSchedule, NoExecute, PreferNoSchedule)</span>
+<span class="w">  </span><span class="nt">tolerationSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span><span class="w">      </span><span class="c1"># NoExecute일 때, Pod을 견디는 시간(초)</span>
+</code></pre></div>
+<hr />
+<h2 id="toleration_3">Toleration 예제</h2>
+<h3 id="1">예제 1: 특정 값과 정확히 일치</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Node에 taint 설정</span>
+<span class="c1"># kubectl taint nodes node1 disktype=ssd:NoSchedule</span>
+
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssd-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tolerations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">disktype</span>
+<span class="w">    </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equal</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ssd</span>
+<span class="w">    </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</code></pre></div>
+<h3 id="2-key-exists">예제 2: Key 존재 여부 확인 (Exists)</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># kubectl taint nodes node1 gpu:NoSchedule</span>
+
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tolerations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu</span>
+<span class="w">    </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exists</span>
+<span class="w">    </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvidia</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvidia/cuda</span>
+</code></pre></div>
+<h3 id="3-noexecute-tolerationseconds">예제 3: NoExecute와 tolerationSeconds</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># kubectl taint nodes node1 maintenance=true:NoExecute</span>
+
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eviction-tolerating-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tolerations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">maintenance</span>
+<span class="w">    </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Equal</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+<span class="w">    </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoExecute</span>
+<span class="w">    </span><span class="nt">tolerationSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3600</span><span class="w">  </span><span class="c1"># 1시간 후 제거</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</code></pre></div>
+<h3 id="4-toleration">예제 4: 와일드카드 Toleration</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wildcard-pod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">tolerations</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Exists</span><span class="w">  </span><span class="c1"># 모든 taint를 용인</span>
+<span class="w">    </span><span class="nt">effect</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NoSchedule</span>
+<span class="w">  </span><span class="nt">containers</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+</code></pre></div>
+<hr />
+<h2 id="_1">실제 사용 사례</h2>
+<h3 id="1-gpu-pod">1. GPU 노드 전용 Pod 스케줄링</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># GPU 노드에 taint 설정</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>gpu-node<span class="w"> </span><span class="nv">accelerator</span><span class="o">=</span>nvidia-tesla:NoSchedule
+
+<span class="c1"># Pod에서 taint 용인</span>
+tolerations:
+-<span class="w"> </span>key:<span class="w"> </span>accelerator
+<span class="w">  </span>operator:<span class="w"> </span>Equal
+<span class="w">  </span>value:<span class="w"> </span>nvidia-tesla
+<span class="w">  </span>effect:<span class="w"> </span>NoSchedule
+</code></pre></div>
+<h3 id="2">2. 유지보수 중인 노드 격리</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 유지보수 예정 노드에 taint 설정</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>maintenance-node<span class="w"> </span><span class="nv">maintenance</span><span class="o">=</span>true:NoExecute
+
+<span class="c1"># 중요한 Service만 해당 노드에 배치</span>
+tolerations:
+-<span class="w"> </span>key:<span class="w"> </span>maintenance
+<span class="w">  </span>operator:<span class="w"> </span>Equal
+<span class="w">  </span>value:<span class="w"> </span><span class="s2">&quot;true&quot;</span>
+<span class="w">  </span>effect:<span class="w"> </span>NoExecute
+<span class="w">  </span>tolerationSeconds:<span class="w"> </span><span class="m">7200</span><span class="w">  </span><span class="c1"># 2시간 동안만 견딤</span>
+</code></pre></div>
+<h3 id="3">3. 전용 노드 풀</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 특정 팀 전용 노드</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>team-node<span class="w"> </span><span class="nv">team</span><span class="o">=</span>data-science:NoSchedule
+
+<span class="c1"># 해당 팀의 Pod들</span>
+tolerations:
+-<span class="w"> </span>key:<span class="w"> </span>team
+<span class="w">  </span>operator:<span class="w"> </span>Equal
+<span class="w">  </span>value:<span class="w"> </span>data-science
+<span class="w">  </span>effect:<span class="w"> </span>NoSchedule
+</code></pre></div>
+<hr />
+<h2 id="taint-toleration_1">Taint와 Toleration 동작 원리</h2>
+<div class="highlight"><pre><span></span><code>Node (taint = gpu=true:NoSchedule)
+  ├─ Pod A (toleration: gpu=true) ✓ 스케줄 가능
+  ├─ Pod B (toleration 없음)      ✗ 스케줄 불가
+  └─ Pod C (toleration: cpu=high) ✗ taint와 불일치
+</code></pre></div>
+<hr />
+<h2 id="_2">주의사항</h2>
+<ol>
+<li><strong>tolerationSeconds 기본값</strong>: NoExecute effect에서 설정하지 않으면 Pod은 즉시 제거됩니다</li>
+<li><strong>operator가 Exists일 때는 value 불필요</strong>: key만으로 매칭합니다</li>
+<li><strong>여러 toleration</strong>: 하나라도 일치하면 스케줄 가능합니다</li>
+<li><strong>DaemonSet</strong>: 자동으로 모든 taint를 용인하도록 설정됩니다</li>
+</ol>
+<hr />
+<h2 id="nodeselector-vs-affinity-vs-toleration">비교: NodeSelector vs Affinity vs Toleration</h2>
+<table>
+<thead>
+<tr>
+<th>방식</th>
+<th>목적</th>
+<th>Pod이 Node를 선택</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NodeSelector</strong></td>
+<td>간단한 Node 선택</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><strong>Affinity</strong></td>
+<td>복잡한 스케줄링 규칙</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><strong>Toleration</strong></td>
+<td>Node의 제약 조건 허용</td>
+<td>✗ (Node가 Pod을 필터링)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="taint-toleration_2">실습: Taint와 Toleration 설정</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Node에 taint 추가</span>
+kubectl<span class="w"> </span>taint<span class="w"> </span>nodes<span class="w"> </span>minikube<span class="w"> </span><span class="nv">app</span><span class="o">=</span>critical:NoSchedule
+
+<span class="c1"># 2. Toleration 없는 Pod 배포 - 실패</span>
+kubectl<span class="w"> </span>run<span class="w"> </span>nginx<span class="w"> </span>--image<span class="o">=</span>nginx
+
+<span class="c1"># 3. Toleration 있는 Pod 배포 - 성공</span>
+cat<span class="w"> </span><span class="s">&lt;&lt;EOF | kubectl apply -f -</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">kind: Pod</span>
+<span class="s">metadata:</span>
+<span class="s">  name: critical-app</span>
+<span class="s">spec:</span>
+<span class="s">  tolerations:</span>
+<span class="s">  - key: app</span>
+<span class="s">    operator: Equal</span>
+<span class="s">    value: critical</span>
+<span class="s">    effect: NoSchedule</span>
+<span class="s">  containers:</span>
+<span class="s">  - name: nginx</span>
+<span class="s">    image: nginx</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 4. 확인</span>
+kubectl<span class="w"> </span>get<span class="w"> </span>pods
+kubectl<span class="w"> </span>describe<span class="w"> </span>node<span class="w"> </span>minikube<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="s2">&quot;Taints&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="_3">학습 핵심 요약</h2>
+<ul>
+<li>✅ <strong>Toleration</strong>은 Pod이 Node의 <strong>Taint를 견디는</strong> 메커니즘</li>
+<li>✅ <strong>Taint</strong> 설정 → Pod이 Node를 피함</li>
+<li>✅ <strong>Toleration</strong> 설정 → Pod이 Node에 배치될 수 있음</li>
+<li>✅ <strong>NoExecute</strong>는 기존 Pod도 제거하는 강력한 effect</li>
+<li>✅ GPU, 전용 노드, 유지보수 상황에서 자주 사용됨</li>
+</ul>
 
 
 
